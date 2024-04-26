@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekarabud <ekarabud@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/23 12:09:53 by ekarabud          #+#    #+#             */
-/*   Updated: 2024/04/26 21:33:58 by ekarabud         ###   ########.fr       */
+/*   Created: 2023/10/27 20:53:27 by ekarabud          #+#    #+#             */
+/*   Updated: 2023/11/03 15:26:34 by ekarabud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft/libft.h"
-void exception();
-# endif
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	size_t	sz;
+
+	if (!s1 || !set)
+		return (0);
+	while (*s1 && ft_strchr(set, *s1))
+		s1++;
+	sz = ft_strlen(s1);
+	while (sz && ft_strchr(set, s1[sz - 1]))
+		sz--;
+	return (ft_substr(s1, 0, sz));
+}

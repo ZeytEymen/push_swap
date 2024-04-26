@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekarabud <ekarabud@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/23 12:09:53 by ekarabud          #+#    #+#             */
-/*   Updated: 2024/04/26 21:33:58 by ekarabud         ###   ########.fr       */
+/*   Created: 2023/10/18 15:16:48 by ekarabud          #+#    #+#             */
+/*   Updated: 2023/10/23 19:20:33 by ekarabud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft/libft.h"
-void exception();
-# endif
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (n)
+	{
+		if ((unsigned char)*s1 == '\0' && (unsigned char)*s2 == '\0')
+			return (0);
+		if ((unsigned char)*s1 != (unsigned char)*s2)
+			return ((unsigned char)*s1 - (unsigned char)*s2);
+		s1++;
+		s2++;
+		n--;
+	}
+	return (0);
+}

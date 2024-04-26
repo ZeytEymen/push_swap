@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekarabud <ekarabud@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/23 12:09:53 by ekarabud          #+#    #+#             */
-/*   Updated: 2024/04/26 21:33:58 by ekarabud         ###   ########.fr       */
+/*   Created: 2023/10/18 18:03:31 by ekarabud          #+#    #+#             */
+/*   Updated: 2023/10/21 19:22:55 by ekarabud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft/libft.h"
-void exception();
-# endif
+void	*ft_memset(void *b, int c, size_t len)
+{
+	size_t			i;
+	unsigned char	*array;
+
+	array = (unsigned char *)b;
+	i = 0;
+	while (i < len)
+	{
+		array[i] = (unsigned char)c;
+		i++;
+	}
+	return (array);
+}

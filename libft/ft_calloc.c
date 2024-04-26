@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekarabud <ekarabud@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/23 12:09:53 by ekarabud          #+#    #+#             */
-/*   Updated: 2024/04/26 21:33:58 by ekarabud         ###   ########.fr       */
+/*   Created: 2023/10/27 15:47:17 by ekarabud          #+#    #+#             */
+/*   Updated: 2023/10/27 17:01:20 by ekarabud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft/libft.h"
-void exception();
-# endif
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*buffer;
+
+	buffer = (void *)malloc(count * size);
+	if (buffer == NULL)
+		return (NULL);
+	ft_bzero(buffer, count * size);
+	return (buffer);
+}

@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekarabud <ekarabud@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/23 12:09:53 by ekarabud          #+#    #+#             */
-/*   Updated: 2024/04/26 21:33:58 by ekarabud         ###   ########.fr       */
+/*   Created: 2023/10/25 17:29:10 by ekarabud          #+#    #+#             */
+/*   Updated: 2023/11/03 12:37:31 by ekarabud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft/libft.h"
-void exception();
-# endif
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	i;
+
+	i = 0;
+	while (i + 1 < dstsize && src[i] != 0)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	if (dstsize)
+		dst[i] = '\0';
+	return (ft_strlen(src));
+}

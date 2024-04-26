@@ -5,29 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekarabud <ekarabud@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/23 12:09:39 by ekarabud          #+#    #+#             */
-/*   Updated: 2024/04/23 12:15:44 by ekarabud         ###   ########.fr       */
+/*   Created: 2023/10/29 16:41:07 by ekarabud          #+#    #+#             */
+/*   Updated: 2023/11/05 15:18:12 by ekarabud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-static int	sep_count(char const *s, char c)
+static int	sep_count(const char *s, char c)
 {
 	int	i;
-	int	sep;
 
 	i = 0;
-	sep = 0;
-	while (s[i])
+	while (*s)
 	{
-		if (s[i] == c && s[i - 1] != '\0' && s[i - 1] != c)
-			sep++;
+		while (*s == c && *s)
+			s++;
+		if (*s == '\0')
+			return (i);
+		while (*s != c && *s)
+			s++;
 		i++;
 	}
-	if (s[i - 1] != c)
-		sep++;
-	return (sep);
+	return (i);
 }
 
 static int	substr_count(char const *s, char c)
@@ -59,8 +59,6 @@ char	**ft_split(char const *s, char c)
 		if (*s == '\0')
 			break ;
 		split[spl_i] = ft_substr(s, 0, (size_t)substr_count(s, c));
-        if (!split[spl_i])
-            return (NULL);
 		spl_i++;
 		s += substr_count(s, c);
 	}

@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekarabud <ekarabud@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/23 12:09:53 by ekarabud          #+#    #+#             */
-/*   Updated: 2024/04/26 21:33:58 by ekarabud         ###   ########.fr       */
+/*   Created: 2023/10/25 13:59:48 by ekarabud          #+#    #+#             */
+/*   Updated: 2023/10/27 17:00:43 by ekarabud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft/libft.h"
-void exception();
-# endif
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	const unsigned char	*s;
+	unsigned char		*d;
+
+	s = (unsigned char *)src;
+	d = (unsigned char *)dst;
+	if (dst == src || !len)
+		return (d);
+	if (dst < src)
+		return (ft_memcpy(d, s, len));
+	else
+	{
+		while (len > 0)
+		{
+			d[len - 1] = s[len - 1];
+			len--;
+		}
+	}
+	return (d);
+}

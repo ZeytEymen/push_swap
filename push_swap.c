@@ -6,113 +6,124 @@
 /*   By: ekarabud <ekarabud@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:26:12 by ekarabud          #+#    #+#             */
-/*   Updated: 2024/04/25 20:55:14 by ekarabud         ###   ########.fr       */
+/*   Updated: 2024/04/26 23:08:04 by ekarabud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/*
-typedef struct s_list
-{
-	int	*array;
-	int	size;
-	int	max_index;
-	int	max_number;
-	int	index_highest;
-	int	*sort_index;
-
-}	t_list;*/
-
-/*
-	(*arr) = malloc(sizeof(t_list));
-	(*arr)->size = endcounter(ac, av);
-	(*arr2) = malloc(sizeof(t_list));
-	(*arr2)->size = 0;
-	(*arr2)->array = malloc(sizeof(int) * (*arr)->size);
-	(*arr)->sort_index = malloc(sizeof(int) * (*arr)->size);
-	(*arr2)->sort_index = malloc(sizeof(int) * (*arr)->size);
-	(*arr)->array = str_atoi(ac, av);*/
-
-// void allocate_stacks(t_list **stack_a, t_list **stack_b, int argc, char **arg)
-// {
-//     (*stack_a) = malloc(sizeof(t_list));
-//     (*stack_a) -> size = end_co
-// }
 #include <stdio.h>
 
-int	count(char *s, char c)
-{
-	printf("%s\n",s);
-	int	i;
-	int	count;
-	int	flag;
-
-	flag = 0;
-	count = 0;
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == c)
-			flag = 0;
-		else if (s[i] != c && flag == 0)
-		{
-			flag = 1;
-			count++;
-		}
-		i++;
-	}
-	return (count);
-}
-
-int	endcounter(int ac, char **av)
-{
-	int	k;
-	int	c;
-
-	k = 0;
-	c = 0;
-	while (k++ != (ac - 1))
-		c += count(av[k], ' ');
-	return (c);
-}
-int count_spaces(char *arg, char ch)
-{
-	int	i;
-	int	count;
-	int	flag;
-
-	flag = 0;
-	count = 0;
-	i = 0;
-	while (arg[i])
-	{
-		if (arg[i] == ch)
-			flag = 0;
-		else if (arg[i] != ch && flag == 0)
-		{
-			flag = 1;
-			count++;
-		}
-		i++;
-	}
-}
-int arg_count(int ac, char **arg)
+void	free_split(char **tmp_arr)
 {
 	int i;
-	int count;
 
-	count = 0;
 	i = 0;
-	while (i++ != (ac - 1))
-		count += count_spaces(arg[i], ' ');
-	return (count);
+	while (tmp_arr[i] != NULL)
+	{
+		free(tmp_arr[i]);
+		i++;
+	}
+	
+}
+void free_list(t_list *head) {
+    t_list *current = head;
+    t_list *next;
+
+    while (current != NULL) {
+        next = current->next;
+        free(current);
+        current = next;
+    }
+}
+
+
+void	is_full_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] != ' ')
+			return ;
+		i++;
+	}
+	printf("full_space");
+	//exception();
+}
+void	check_duplicates(int data, t_list *list)
+{
+	while (list != 0)
+	{
+		if (list->data == data)
+				printf("dup");
+
+			//exception();
+		list = list->next;
+	}
+}
+
+void check_is_numeric(char **av)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (av[i] != 0)
+	{
+		j = 0;
+		is_full_space(av[i]);
+		while (av[i][j] != '\0')
+		{
+			if (!((ft_isdigit(av[i][j]) || ft_isdigit(av[i][j + 1]))|| av[i][j] == ' '|| av[i][j] == '-'))
+				exception();
+			j++;
+		}
+		i++;
+	}
+}
+void	create_stack(int argc, char **argv, t_list **stack_a)
+{
+	int		i;
+	int		j;
+	int		num;
+	t_list	*node;
+	char	**tmp_arr;
+	(void)stack_a;
+	i = 1;
+	check_is_numeric(argv);
+	while (i < argc)
+	{
+		tmp_arr = ft_split(argv[i], ' ');
+		j = 0;
+		while (tmp_arr[j] != NULL)
+		{
+			num = ft_atoi(tmp_arr[j]);
+			printf("%d\n",num);
+			check_duplicates(num, *stack_a);
+			node = ft_lstnew(num, -1);
+			ft_lstadd_back(stack_a, node);
+			j++;
+		}
+		free_split(tmp_arr);
+		free(tmp_arr);
+		i++;
+	}
 }
 
 int main(int ac, char **av)
 {
-    t_list  *stack_a;
-    t_list  *stack_b;
-
-	int size = endcounter(ac,av);
-	printf("\n\n%d",size);
+	t_list *stack_a;
+	//t_list *stack_b;
+	
+	if (ac > 1)
+	{
+		create_stack(ac, av, &stack_a);
+		free_list(stack_a);
+	}
+}
+__attribute__((destructor))
+static void test(void)
+{
+	system("leaks push_swap");
 }
