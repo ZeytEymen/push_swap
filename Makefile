@@ -1,4 +1,7 @@
-SRCS			=	push_swap.c utils.c
+SRCS			=	push_swap.c actions.c flag.c \
+					radix_sort.c sort_utils.c \
+					special_sort.c utils.c \
+					utils2.c
 
 OBJS			=	$(SRCS:.c=.o)
 
@@ -15,13 +18,15 @@ all:			$(NAME)
 $(NAME):		$(OBJS)
 				make -C libft -s
 				$(CC) $(CFLAGS) $(OBJS) -o $(NAME) libft/libft.a
+				$(RM) push_swap.a
 
 clean:			
 				make clean -C libft -s
 				$(RM) $(OBJS)
 
 fclean:			clean
-						$(RM) $(NAME)
+				make fclean -C libft -s
+				$(RM) $(NAME)
 						
 re:				fclean all
 

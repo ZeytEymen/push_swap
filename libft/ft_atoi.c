@@ -6,7 +6,7 @@
 /*   By: ekarabud <ekarabud@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 16:23:29 by ekarabud          #+#    #+#             */
-/*   Updated: 2024/04/26 23:04:40 by ekarabud         ###   ########.fr       */
+/*   Updated: 2024/04/27 14:31:46 by ekarabud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,10 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	while (str[i] && ft_isdigit(str[i]))
+	{
 		result = (result * 10) + (str[i++] - '0');
-	if (sign * result < INT_MIN || sign * result > INT_MAX)
-		write(2, "ERROR\n", 6);
+		if (sign * result < INT_MIN || sign * result > INT_MAX)
+			write(2, "Error\n", 6);
+	}
 	return (result * sign);
 }

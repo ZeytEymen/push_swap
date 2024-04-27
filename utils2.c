@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekarabud <ekarabud@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/23 12:26:12 by ekarabud          #+#    #+#             */
-/*   Updated: 2024/04/27 16:46:10 by ekarabud         ###   ########.fr       */
+/*   Created: 2024/04/27 14:06:38 by ekarabud          #+#    #+#             */
+/*   Updated: 2024/04/27 16:42:02 by ekarabud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int main(int ac, char **av)
+void	free_split(char **tmp_arr)
 {
-	t_list *stack_a;
-	t_list *stack_b;
-	
-	if (ac > 1)
+	int i;
+
+	i = 0;
+	while (tmp_arr[i] != NULL)
 	{
-		create_stack(ac, av, &stack_a);
-		values_to_flag(&stack_a);
-		sort_stacks(ft_lstsize(stack_a),&stack_a, &stack_b);
-		free_list(stack_a);
-		free_list(stack_b);
+		free(tmp_arr[i]);
+		i++;
 	}
-	return (0);
+	
 }
-// __attribute__((destructor))
-// static void test(void)
-// {
-// 	system("leaks push_swap");
-// }
+void free_list(t_list *head) 
+{
+    t_list *current = head;
+    t_list *next;
+
+    while (current != NULL) {
+        next = current->next;
+        free(current);
+        current = next;
+    }
+}
