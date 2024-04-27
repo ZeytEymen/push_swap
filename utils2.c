@@ -6,7 +6,7 @@
 /*   By: ekarabud <ekarabud@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 14:06:38 by ekarabud          #+#    #+#             */
-/*   Updated: 2024/04/27 16:42:02 by ekarabud         ###   ########.fr       */
+/*   Updated: 2024/04/27 18:09:28 by ekarabud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_split(char **tmp_arr)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tmp_arr[i] != NULL)
@@ -22,16 +22,18 @@ void	free_split(char **tmp_arr)
 		free(tmp_arr[i]);
 		i++;
 	}
-	
 }
-void free_list(t_list *head) 
-{
-    t_list *current = head;
-    t_list *next;
 
-    while (current != NULL) {
-        next = current->next;
-        free(current);
-        current = next;
-    }
+void	free_list(t_list *head)
+{
+	t_list	*current;
+	t_list	*next;
+
+	current = head;
+	while (current != NULL)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
 }

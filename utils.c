@@ -6,15 +6,15 @@
 /*   By: ekarabud <ekarabud@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:39:05 by ekarabud          #+#    #+#             */
-/*   Updated: 2024/04/27 14:30:44 by ekarabud         ###   ########.fr       */
+/*   Updated: 2024/04/27 18:08:48 by ekarabud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void exception()
+void	exception(void)
 {
-	write(2,"Error\n",6);
+	write(2, "Error\n", 6);
 	exit(0);
 }
 
@@ -31,6 +31,7 @@ void	is_full_space(char *str)
 	}
 	exception();
 }
+
 void	check_duplicates(int data, t_list *list)
 {
 	while (list != 0)
@@ -41,7 +42,7 @@ void	check_duplicates(int data, t_list *list)
 	}
 }
 
-void check_is_numeric(char **av)
+void	check_is_numeric(char **av)
 {
 	int	i;
 	int	j;
@@ -53,7 +54,8 @@ void check_is_numeric(char **av)
 		is_full_space(av[i]);
 		while (av[i][j] != '\0')
 		{
-			if ((ft_isdigit(av[i][j]) || av[i][j] == ' ') || ((av[i][j] == '+'|| av[i][j] == '-') && ft_isdigit(av[i][j + 1])))
+			if ((ft_isdigit(av[i][j]) || av[i][j] == ' ') || ((av[i][j] == '+'
+						|| av[i][j] == '-') && ft_isdigit(av[i][j + 1])))
 				j++;
 			else
 				exception();
@@ -61,6 +63,7 @@ void check_is_numeric(char **av)
 		i++;
 	}
 }
+
 void	create_stack(int argc, char **argv, t_list **stack_a)
 {
 	int		i;
@@ -68,6 +71,7 @@ void	create_stack(int argc, char **argv, t_list **stack_a)
 	int		num;
 	t_list	*node;
 	char	**tmp_arr;
+
 	i = 1;
 	check_is_numeric(argv);
 	while (i < argc)

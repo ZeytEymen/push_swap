@@ -6,15 +6,15 @@
 /*   By: ekarabud <ekarabud@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 14:08:04 by ekarabud          #+#    #+#             */
-/*   Updated: 2024/04/27 14:16:02 by ekarabud         ###   ########.fr       */
+/*   Updated: 2024/04/27 18:04:24 by ekarabud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void values_to_flag(t_list **stack)
+void	values_to_flag(t_list **stack)
 {
-    int		min;
+	int		min;
 	int		stack_len;
 	int		flag_num;
 	t_list	*temp;
